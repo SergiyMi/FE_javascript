@@ -16,7 +16,7 @@ if (!input) {
 }
 if (numbers.length > 0) {
   for (let i = 0; i < numbers.length; i++) {
-    total = total + numbers[i];
+    total += numbers[i];
   }
   console.log(`Общая сумма чисел равна ${total}`);
 }
