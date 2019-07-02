@@ -27,21 +27,14 @@ const notepad = {
   },
   saveNote(note){
     return this.notes.splice(this.notes.length, 0, note);
-    // const newNote = this.notes.push(note);
-    // return newNote;
-    // return this.notes.push(note);
   },
   deleteNote(id){
-    const temp = this.findNoteById(id);
     for (let i = 0; i < this.notes.length; i += 1) {
-      if (temp === undefined){
-        return;
-      }
-      if (this.notes[i].id === temp.id){
-          // delete this.notes[i];
-         return this.notes.splice(i, 1);
+      if (this.notes[i].id === id){
+         this.notes.splice(i, 1);
         }
     }
+    return this;
   },
   updateNoteContent(id, updatedContent){
     Object.assign(this.findNoteById(id), updatedContent);
