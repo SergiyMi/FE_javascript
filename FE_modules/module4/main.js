@@ -26,7 +26,10 @@ const notepad = {
     return undefined;
   },
   saveNote(note){
-    return this.notes.push(note);
+    return this.notes.splice(this.notes.length, 0, note);
+    // const newNote = this.notes.push(note);
+    // return newNote;
+    // return this.notes.push(note);
   },
   deleteNote(id){
     const temp = this.findNoteById(id);
@@ -35,7 +38,8 @@ const notepad = {
         return;
       }
       if (this.notes[i].id === temp.id){
-          delete this.notes[i];
+          // delete this.notes[i];
+         return this.notes.splice(i, 1);
         }
     }
   },
