@@ -26,7 +26,8 @@ const notepad = {
     return undefined;
   },
   saveNote(note){
-    return this.notes.splice(this.notes.length, 0, note);
+    this.notes.splice(this.notes.length, 0, note);
+    return this;
   },
   deleteNote(id){
     for (let i = 0; i < this.notes.length; i += 1) {
