@@ -1,85 +1,95 @@
-'use strict'
+"use strict";
 
-function Notepad(notes = []){
+function Notepad(notes = []) {
   this.notes = notes;
-  this.getNotes = function (){
-    return this.notes;
-  };
+  // this.saveNote = function (note){
+  //   // this.notes.splice(this.notes.length, 0, note);
+  //   this.notes.push(note);
+  //   return this;
+  // };
+}
 
-  this.findNoteById = function (id){
-    for (let i = 0; i < this.notes.length; i += 1) {
-      if (this.notes[i].id === id){
-        return this.notes[i];
-      }
+Notepad.prototype.getNotes = function() {
+  return this.notes;
+};
+
+Notepad.prototype.findNoteById = function(id) {
+  for (let i = 0; i < this.notes.length; i += 1) {
+    if (this.notes[i].id === id) {
+      return this.notes[i];
+    }
   }
   return undefined;
-  };
+};
 
-  this.saveNote = function (note){
-    return this.notes.splice(this.notes.length, 0, note);
-  };
+Notepad.prototype.saveNote = function(note) {
+  this.notes.push(note);
+  return this;
+};
 
-  this.deleteNote = function (id){
-    for (let i = 0; i < this.notes.length; i += 1) {
-      if (this.notes[i].id === id){
-         this.notes.splice(i, 1);
-        }
+Notepad.prototype.deleteNote = function(id) {
+  for (let i = 0; i < this.notes.length; i += 1) {
+    if (this.notes[i].id === id) {
+      this.notes.splice(i, 1);
     }
-    return this;
-  };
+  }
+  return this;
+};
 
-  this.updateNoteContent = function (id, updatedContent){
-    Object.assign(this.findNoteById(id), updatedContent);
-    return this;
-  };
+Notepad.prototype.updateNoteContent = function(id, updatedContent) {
+  Object.assign(this.findNoteById(id), updatedContent);
+  return this;
+};
 
-  this.updateNotePriority = function (id, updatePriority){
-    this.findNoteById(id).priority = updatePriority;
-    return this;
-  };
+Notepad.prototype.updateNotePriority = function(id, updatePriority) {
+  this.findNoteById(id).priority = updatePriority;
+  return this;
+};
 
-  this.filterNotesByQuery = function (query){
-    const newArr = [];
-    for (let i = 0; i < this.notes.length; i += 1) {
-      if (this.notes[i].title.toLowerCase().includes(query) || this.notes[i].body.toLowerCase().includes(query)){
-        newArr.push(this.notes[i]);
-      }
+Notepad.prototype.filterNotesByQuery = function(query) {
+  const newArr = [];
+  for (let i = 0; i < this.notes.length; i += 1) {
+    if (
+      this.notes[i].title.toLowerCase().includes(query) ||
+      this.notes[i].body.toLowerCase().includes(query)
+    ) {
+      newArr.push(this.notes[i]);
     }
-    return newArr;
-  };
+  }
+  return newArr;
+};
 
-  this.filterNotesByPriority = function (priority){
-    const newArr = [];
-    for (let i = 0; i < this.notes.length; i += 1) {
-      if (this.notes[i].priority === priority){
-        newArr.push(this.notes[i]);
-      }
+Notepad.prototype.filterNotesByPriority = function(priority) {
+  const newArr = [];
+  for (let i = 0; i < this.notes.length; i += 1) {
+    if (this.notes[i].priority === priority) {
+      newArr.push(this.notes[i]);
     }
-    return newArr;
-  };
+  }
+  return newArr;
 };
 
 Notepad.Priority = {
   LOW: 0,
   NORMAL: 1,
-  HIGH: 2,
+  HIGH: 2
 };
 
 const initialNotes = [
   {
-    id: 'id-1',
-    title: 'JavaScript essentials',
+    id: "id-1",
+    title: "JavaScript essentials",
     body:
-      'Get comfortable with all basic JavaScript concepts: variables, loops, arrays, branching, objects, functions, scopes, prototypes etc',
-    priority: Notepad.Priority.HIGH,
+      "Get comfortable with all basic JavaScript concepts: variables, loops, arrays, branching, objects, functions, scopes, prototypes etc",
+    priority: Notepad.Priority.HIGH
   },
   {
-    id: 'id-2',
-    title: 'Refresh HTML and CSS',
+    id: "id-2",
+    title: "Refresh HTML and CSS",
     body:
-      'Need to refresh HTML and CSS concepts, after learning some JavaScript. Maybe get to know CSS Grid and PostCSS, they seem to be trending.',
-    priority: Notepad.Priority.NORMAL,
-  },
+      "Need to refresh HTML and CSS concepts, after learning some JavaScript. Maybe get to know CSS Grid and PostCSS, they seem to be trending.",
+    priority: Notepad.Priority.NORMAL
+  }
 ];
 
 const notepad = new Notepad(initialNotes);
@@ -87,17 +97,17 @@ const notepad = new Notepad(initialNotes);
 /*
  * Смотрю что у меня в заметках после инициализации
  */
-console.log('Все текущие заметки: ', notepad.getNotes());
+console.log("Все текущие заметки: ", notepad.getNotes());
 
 /*
  * Добавляю еще 2 заметки и смотрю что получилось
  */
 notepad.saveNote({
-  id: 'id-3',
-  title: 'Get comfy with Frontend frameworks',
+  id: "id-3",
+  title: "Get comfy with Frontend frameworks",
   body:
-    'First must get some general knowledge about frameworks, then maybe try each one for a week or so. Need to choose between React, Vue and Angular, by reading articles and watching videos.',
-  priority: Notepad.Priority.NORMAL,
+    "First must get some general knowledge about frameworks, then maybe try each one for a week or so. Need to choose between React, Vue and Angular, by reading articles and watching videos.",
+  priority: Notepad.Priority.NORMAL
 });
 
 notepad.saveNote({
@@ -108,11 +118,11 @@ notepad.saveNote({
   priority: Notepad.Priority.LOW,
 });
 
-console.log('Все текущие заметки: ', notepad.getNotes());
+console.log("Все текущие заметки: ", notepad.getNotes());
 
-/*
- * Зима уже близко, пора поднять приоритет на покупку одежды
- */
+// /*
+//  * Зима уже близко, пора поднять приоритет на покупку одежды
+//  */
 notepad.updateNotePriority('id-4', Notepad.Priority.NORMAL);
 
 console.log(
@@ -120,43 +130,43 @@ console.log(
   notepad.getNotes(),
 );
 
-/*
- * Решил что фреймворки отложу немного, понижаю приоритет
- */
-notepad.updateNotePriority('id-3', Notepad.Priority.LOW);
+// /*
+//  * Решил что фреймворки отложу немного, понижаю приоритет
+//  */
+notepad.updateNotePriority("id-3", Notepad.Priority.LOW);
 
 console.log(
-  'Заметки после обновления приоритета для id-3: ',
-  notepad.getNotes(),
+  "Заметки после обновления приоритета для id-3: ",
+  notepad.getNotes()
 );
 
-/*
- * Решил отфильтровать заметки по слову html
- */
+// /*
+//  * Решил отфильтровать заметки по слову html
+//  */
 console.log(
   'Отфильтровали заметки по ключевому слову "html": ',
   notepad.filterNotesByQuery('html'),
 );
 
-/*
- * Решил отфильтровать заметки по слову javascript
- */
+// /*
+//  * Решил отфильтровать заметки по слову javascript
+//  */
 console.log(
   'Отфильтровали заметки по ключевому слову "javascript": ',
   notepad.filterNotesByQuery('javascript'),
 );
 
-/*
- * Хочу посмотреть только заметки с нормальным приоритетом
- */
+// /*
+//  * Хочу посмотреть только заметки с нормальным приоритетом
+//  */
 console.log(
   'Отфильтровали заметки по нормальному приоритету: ',
   notepad.filterNotesByPriority(Notepad.Priority.NORMAL),
 );
 
-/*
- * Обновим контент заметки с id-3
- */
+// /*
+//  * Обновим контент заметки с id-3
+//  */
 notepad.updateNoteContent('id-3', {
   title: 'Get comfy with React.js or Vue.js',
 });
@@ -166,8 +176,8 @@ console.log(
   notepad.getNotes(),
 );
 
-/*
- * Повторил HTML и CSS, удаляю запись c id-2
- */
+// /*
+//  * Повторил HTML и CSS, удаляю запись c id-2
+//  */
 notepad.deleteNote('id-2');
 console.log('Заметки после удаления с id -2: ', notepad.getNotes());
