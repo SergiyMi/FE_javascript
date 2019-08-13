@@ -19,19 +19,19 @@ function createButton(action, text) {
 }
 
 function createNoteContent(title, body) {
-    const noteContent = createElement('div', 'note_content');
-    noteContent.append(createElement('h2', 'note_title', title));
-    noteContent.append(createElement('p', 'note_body', body));
+    const noteContent = createElement('div', 'note__content');
+    noteContent.append(createElement('h2', 'note__title', title));
+    noteContent.append(createElement('p', 'note__body', body));
     return noteContent;
 }
 
 function createNoteFooter(priority) {
-    const noteFooter = createElement('footer', 'note_footer');
-    const noteSectionL = createElement('section', 'note_section');
-    const noteSectionR = createElement('section', 'note_section');
+    const noteFooter = createElement('footer', 'note__footer');
+    const noteSectionL = createElement('section', 'note__section');
+    const noteSectionR = createElement('section', 'note__section');
     noteSectionL.append(createButton(NOTE_ACTIONS.DECREASE_PRIORITY, ICON_TYPES.ARROW_DOWN));
     noteSectionL.append(createButton(NOTE_ACTIONS.INCREASE_PRIORITY, ICON_TYPES.ARROW_UP));
-    noteSectionL.append(createElement('span', 'note_priority', `Priority: ${priority}`));
+    noteSectionL.append(createElement('span', 'note__priority', `Priority: ${priority}`));
     noteSectionR.append(createButton(NOTE_ACTIONS.EDIT, ICON_TYPES.EDIT));
     noteSectionR.append(createButton(NOTE_ACTIONS.DELETE, ICON_TYPES.DELETE));
     noteFooter.append(noteSectionL);
