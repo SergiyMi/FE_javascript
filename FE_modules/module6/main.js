@@ -24,31 +24,35 @@ class Notepad {
   }
 
   findNoteById(id) {
-    for (let i = 0; i < this.notes.length; i += 1) {
-      if (this.notes[i].id === id) {
-        return this.notes[i];
+    //   return this._notes.find(el => el.id === id);
+    for (let i = 0; i < this._notes.length; i += 1) {
+      if (this._notes[i].id === id) {
+        return this._notes[i];
       }
     }
     return undefined;
   }
 
   saveNote(note) {
-    this.notes.push(note);
+    this._notes.push(note);
     return this;
   }
 
   deleteNote(id) {
-    for (let i = 0; i < this.notes.length; i += 1) {
-      if (this.notes[i].id === id) {
-        this.notes.splice(i, 1);
+    // this._notes = this._notes.filter(el => el.id !== id);
+    // return this;
+    for (let i = 0; i < this._notes.length; i += 1) {
+      if (this._notes[i].id === id) {
+        this._notes.splice(i, 1);
       }
     }
     return this;
   }
 
   updateNoteContent(id, updatedContent) {
-    Object.assign(this.findNoteById(id), updatedContent);
-    return this;
+    const note = this.findNoteById(id);
+    if (!note) return;
+    return Object.assign(note, updatedContent);
   }
 
   updateNotePriority(id, updatePriority) {
@@ -57,6 +61,10 @@ class Notepad {
   }
 
   filterNotesByQuery(query) {
+    // this._notes = this._notes.filter(el => 
+    //   el.title.toLowerCase().includes(query) ||
+    //   el.body.toLowerCase().includes(query));
+    //  return this;
     const newArr = [];
     for (let i = 0; i < this.notes.length; i += 1) {
       if (
@@ -70,10 +78,13 @@ class Notepad {
   }
 
   filterNotesByPriority(priority) {
+    // this._notes = this._notes.filter(el => el.priority === priority);
+    // return this;
+
     const newArr = [];
-    for (let i = 0; i < this.notes.length; i += 1) {
-      if (this.notes[i].priority === priority) {
-        newArr.push(this.notes[i]);
+    for (let i = 0; i < this._notes.length; i += 1) {
+      if (this._notes[i].priority === priority) {
+        newArr.push(this._notes[i]);
       }
     }
     return newArr;
