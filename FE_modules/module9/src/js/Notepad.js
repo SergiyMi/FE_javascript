@@ -53,14 +53,12 @@ class Notepad {
     }
   
     filterNotesByQuery(query) {
-      return this._notes = this._notes.filter(el => el.title.toLowerCase().includes(query) ||
+      return this._notes.filter(el => el.title.toLowerCase().includes(query) ||
       el.body.toLowerCase().includes(query));
-      // return this;
     }
   
     filterNotesByPriority(priority) {
-      return this._notes = this._notes.filter(el => el.priority === priority);
-      // return this;
+      return this._notes.filter(el => el.priority === priority);
     }
   }
   
